@@ -15,6 +15,7 @@ class Stack
     end
 
     def push(value)
+      @data = LinkedListNode.new(value, @data)
     end
 
     def pop
