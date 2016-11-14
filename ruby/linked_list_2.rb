@@ -16,6 +16,23 @@ def reverse_list(list, prev_node=nil)
   return revList
 end
 
+def check_infinite(list)
+  leading_node = list
+  trailing_node = list
+
+  while leading_node != nil
+    return 'no loop' if leading_node.next_node == nil
+    leading_node = leading_node.next_node
+
+    return 'no loop' if leading_node.next_node == nil
+    leading_node = leading_node.next_node
+    trailing_node = trailing_node.next_node
+
+    return 'infinite loop' if leading_node == trailing_node
+  end
+
+end
+
 def print_values(list_node)
   if list_node
     print "#{list_node.value} --> "
@@ -26,14 +43,21 @@ def print_values(list_node)
   end
 end
 
-node1 = LinkedListNode.new(37)
-node2 = LinkedListNode.new(99, node1)
-node3 = LinkedListNode.new(12, node2)
+## initialize test list
+# node1 = LinkedListNode.new(37)
+# node2 = LinkedListNode.new(99, node1)
+# node3 = LinkedListNode.new(12, node2)
 
-print_values(node3)
+## make list infinite
+# node1.next_node = node3
 
-puts "-------"
+## print testing results
 
-revlist = reverse_list(node3)
+# print_values(node3)
 
-print_values(revlist)
+# puts "-------"
+
+# revlist = reverse_list(node3)
+# print_values(revlist)
+
+# print check_infinite(node3)
