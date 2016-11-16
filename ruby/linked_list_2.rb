@@ -16,6 +16,17 @@ def reverse_list(list, prev_node=nil)
   return revList
 end
 
+def rev_list(list, prev_node=nil)
+  if list.nil?
+    return prev_node
+  else
+    next_node = list.next_node
+    list.next_node = prev_node
+    rev_list(next_node, list)
+  end
+end
+
+
 def check_infinite(list)
   leading_node = list
   trailing_node = list
@@ -44,20 +55,25 @@ def print_values(list_node)
 end
 
 ## initialize test list
-# node1 = LinkedListNode.new(37)
-# node2 = LinkedListNode.new(99, node1)
-# node3 = LinkedListNode.new(12, node2)
+node1 = LinkedListNode.new(37)
+node2 = LinkedListNode.new(99, node1)
+node3 = LinkedListNode.new(12, node2)
 
 ## make list infinite
 # node1.next_node = node3
 
 ## print testing results
 
-# print_values(node3)
+print_values(node3)
 
-# puts "-------"
+puts "-------"
 
-# revlist = reverse_list(node3)
-# print_values(revlist)
+revlist = reverse_list(node3)
+print_values(revlist)
+
+puts "-------"
+
+revlist2 = rev_list(node3)
+print_values(revlist2)
 
 # print check_infinite(node3)
