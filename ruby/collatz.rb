@@ -1,3 +1,5 @@
+require 'benchmark'
+
 def find_chain_length(num)
   chain_length = 1
   while num != 1
@@ -18,8 +20,12 @@ def find_longest_chain(num)
       longest.update(input: i, length: chain_length)
     end
   end
-  puts "Input #{longest[:input]} with length of #{longest[:length]}"
+  return "Input #{longest[:input]} has the longest chain with length of #{longest[:length]} \n"
 end
 
-find_longest_chain(1000000)
-# puts: Input 837799 with length of 525
+range = 1000000
+puts find_longest_chain(range) # puts: Input 837799 with length of 525
+
+Benchmark.bm do |x|
+  x.report("flc") { find_longest_chain(range)}
+end
