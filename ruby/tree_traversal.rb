@@ -7,18 +7,12 @@ class Tree
   end
 
   def depth_first_search(search_value)
-    if @payload == search_value
-      puts self.inspect
-    else
-      @children.each do |child|
-        child.depth_first_search(search_value)
-      end
-    end
+    return puts self.inspect if @payload == search_value
+    @children.each {|child| child.depth_first_search(search_value)}
   end
 
   def breadth_first_search(val)
     queue = [self]
-
     while queue.any?
       node = queue.shift
       return puts node.inspect if node.payload == val
@@ -27,8 +21,6 @@ class Tree
   end
 
 end
-
-
 
 deep_fifth_node = Tree.new(5, [])
 eleventh_node = Tree.new(11, [])
