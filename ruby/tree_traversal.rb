@@ -18,22 +18,12 @@ class Tree
 
   def breadth_first_search(val)
     queue = [self]
-    puts "initial queue #{queue.inspect}\n\n"
 
-    unless queue.empty?
-      queue.each do |node|
-        puts "node #{node.payload}\n\n"
-        if node.payload == val
-          return puts "found node #{node.payload}"
-        else
-          # puts "queue before push #{queue.each}\n\n"
-          node.children.each {|child| queue.push(child)}
-          # queue.shift
-          # puts "queue after shift #{queue.each}\n\n"
-        end
-      end
+    while queue.any?
+      node = queue.shift
+      return puts node.inspect if node.payload == val
+      node.children.each {|child| queue.push(child)}
     end
-
   end
 
 end
@@ -53,6 +43,6 @@ shallow_fifth_node = Tree.new(5, [ninth_node])
 root = Tree.new(2, [seventh_node, shallow_fifth_node])
 
 # find value of 6 in root tree
-# root.depth_first_search(6)
-
-root.breadth_first_search(5)
+num = 5
+root.depth_first_search(num)
+root.breadth_first_search(num)
