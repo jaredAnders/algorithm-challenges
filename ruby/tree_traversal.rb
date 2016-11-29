@@ -1,3 +1,5 @@
+require 'benchmark'
+
 class Tree
   attr_accessor :payload, :children
 
@@ -7,7 +9,7 @@ class Tree
   end
 
   def depth_first_search(search_value)
-    return puts self.inspect if @payload == search_value
+    return puts "\n#{self.inspect}\n" if @payload == search_value
     @children.each {|child| child.depth_first_search(search_value)}
   end
 
@@ -15,7 +17,7 @@ class Tree
     queue = [self]
     while queue.any?
       node = queue.shift
-      return puts node.inspect if node.payload == val
+      return puts "\n#{node.inspect}\n" if node.payload == val
       node.children.each {|child| queue.push(child)}
     end
   end
@@ -35,6 +37,9 @@ shallow_fifth_node = Tree.new(5, [ninth_node])
 root = Tree.new(2, [seventh_node, shallow_fifth_node])
 
 # find value of 6 in root tree
-num = 5
-root.depth_first_search(num)
-root.breadth_first_search(num)
+num = 4
+
+Benchmark.bm do |x|
+  x.report("Depth:") {root.depth_first_search(num)}
+  x.report("Breadth:") {root.breadth_first_search(num)}
+end
