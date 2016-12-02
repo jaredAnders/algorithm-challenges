@@ -34,8 +34,9 @@ class BinaryTree
     end
   end
 
+
+
 end
 
 array = [7, 4, 9, 1, 6, 14, 10]
-tree = BinaryTree.new()
-puts tree.build_tree(array).inspect
+tree = BinaryTree.new.build_tree(array)
