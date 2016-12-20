@@ -1,7 +1,10 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    ast (2.3.0)
     diff-lcs (1.2.5)
+    parser (2.3.3.1)
+      ast (~> 2.2)
     rspec (3.5.0)
       rspec-core (~> 3.5.0)
       rspec-expectations (~> 3.5.0)
@@ -15,12 +18,15 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.5.0)
     rspec-support (3.5.0)
+    seeing_is_believing (3.1.1)
+      parser (>= 2.3.0.7, < 3.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   rspec
+  seeing_is_believing
 
 BUNDLED WITH
-   1.11.2
+   1.13.6
