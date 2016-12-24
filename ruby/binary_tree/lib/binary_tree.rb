@@ -10,35 +10,27 @@ class BinaryTree
   def self.build(array)
     tree = BinaryTree.new(array.shift)
     array.each do |element|
-      compare_node(tree, element)
+      compare(tree, element)
     end
     tree
   end
 
-  def self.compare_node(current_node, element)
-    if element < current_node.payload
-      if current_node.left.nil?
-        current_node.left = BinaryTree.new(element)
-      else
-        compare_node(current_node.left, element)
-      end
-    elsif element > current_node.payload
-      if current_node.right.nil?
-        current_node.right = BinaryTree.new(element)
-      else
-        compare_node(current_node.right, element)
-      end
+  def self.compare(node, element)
+    if element < node.payload
+      node.left ? compare(node.left, element) : node.left = BinaryTree.new(element)
+    else
+      node.right ? compare(node.right, element) : node.right = BinaryTree.new(element)
     end
   end
 
   def sort(sorted_array = [])
-    if self.left.nil?
-      sorted_array << self.payload
-      self.right.sort(sorted_array) unless self.right.nil?
+    if left.nil?
+      sorted_array << payload
+      right.sort(sorted_array) unless right.nil?
     else
-      self.left.sort(sorted_array)
+      left.sort(sorted_array)
       self.left = nil
-      self.sort(sorted_array)
+      sort(sorted_array)
     end
     sorted_array
   end
