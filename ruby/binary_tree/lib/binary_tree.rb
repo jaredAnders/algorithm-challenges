@@ -1,5 +1,5 @@
 class BinaryTree
-  attr_accessor :payload, :left, :right, :build_tree
+  attr_accessor :payload, :left, :right, :build, :sort
 
   def initialize(payload = nil, left = nil, right = nil)
     @payload = payload
@@ -7,36 +7,39 @@ class BinaryTree
     @right = right
   end
 
-  def build_tree(array)
-    tree = []
-    array.each_with_index do |element, index|
-      if index == 0
-        tree.push(BinaryTree.new(array[0]))
-      else
-        current_node = tree[0]
-        compare_node(current_node, element)
-      end
+  def self.build(array)
+    tree = BinaryTree.new(array.shift)
+    array.each do |element|
+      compare_node(tree, element)
     end
     tree
   end
 
-  def compare_node(current_node, element)
+  def self.compare_node(current_node, element)
     if element < current_node.payload
-      if current_node.left == nil
+      if current_node.left.nil?
         current_node.left = BinaryTree.new(element)
-      else compare_node(current_node.left, element)
+      else
+        compare_node(current_node.left, element)
       end
     elsif element > current_node.payload
-      if current_node.right == nil
+      if current_node.right.nil?
         current_node.right = BinaryTree.new(element)
-      else compare_node(current_node.right, element)
+      else
+        compare_node(current_node.right, element)
       end
     end
   end
 
-
-
+  def sort(sorted_array = [])
+    if self.left.nil?
+      sorted_array << self.payload
+      self.right.sort(sorted_array) unless self.right.nil?
+    else
+      self.left.sort(sorted_array)
+      self.left = nil
+      self.sort(sorted_array)
+    end
+    sorted_array
+  end
 end
-
-# array = [7, 4, 9, 1, 6, 14, 10]
-# tree = BinaryTree.new.build_tree(array)
