@@ -1,3 +1,3 @@
 # algorithm-challenges
 
-Algorithm Challenges for FHP
+Various coding challenges
