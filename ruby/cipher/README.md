@@ -8,8 +8,8 @@ The plaintext could include any uppercase letter of the alphabet and digits 0-9.
 
 The encryption method was done by running the plaintext through the following techniques in succession:
 
-  * a [Caesar/Mixed Alphabet Cipher](http://crypto.interactive-maths.com/mixed-alphabet-cipher.html) : in a simple Caesar substitution cipher (sometimes known as ROT-13), the substitution string is simply formed by starting the alphabet at an pre-shared offset and looping around. You can also provide a keyword to provide a way of mixing up the substitution string a bit, so their are not merely 36 possible substitution strings. You can also do both! This is what the Barfoonians did. 
- 
+  * a [Caesar/Mixed Alphabet Cipher](http://crypto.interactive-maths.com/mixed-alphabet-cipher.html) : in a simple Caesar substitution cipher (sometimes known as ROT-13), the substitution string is simply formed by starting the alphabet at an pre-shared offset and looping around. You can also provide a keyword to provide a way of mixing up the substitution string a bit, so their are not merely 36 possible substitution strings. You can also do both! This is what the Barfoonians did.
+
   So if the keyword was GREYHOUND and the offset was 17, you put the keyword first, move it right by the given offset, then go through all the remaining alphabet in order, without repeating any letters. So your substitution text would look like:
 
           A|B|C|D|E|F|G|H|I|J|K|L|M|N|O|P|Q|R|S|T|U|V|W|X|Y|Z|0|1|2|3|4|5|6|7|8|9
@@ -64,3 +64,7 @@ Once this is done, the Foobarnians might ask about ways they could safely exchan
 ##### Footnote
 
 1. Note the method described at the link is a bit different, in that duplicate letters are not removed from the keyword. It makes programming significantly easier to just mutate the keyword to contain only unique letters, as described here.
+
+## Instructions
+
+Simply run 'ruby decryptor.rb' from the command line and follow the prompts.

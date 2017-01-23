@@ -20,6 +20,23 @@ class Cipher
     substitute_text(input, alphabet, substitution)
   end
 
+  def reverse_transposition
+    # set keys
+    dedupe_key = dedupe.join
+    mod_key = modify_keyword
+
+    # cut and reorder segments
+    segments = assign_to_char(dedupe_key, cut_segments(mod_key))
+    segments = reorder_segments(mod_key, segments)
+
+    # reverse transposition, combine into one string and remove trailing X's
+    output = segments.transpose.join('')
+    output.chop! while output.end_with? 'X'
+    output
+  end
+
+  private
+
   def substitute_text(input, alphabet, substitution)
     output = []
     input.delete(' ').split('').each do |e|
@@ -45,21 +62,6 @@ class Cipher
     end
     (0..9).each { |i| mixed_alphabet << i.to_s }
     mixed_alphabet.rotate(-date)
-  end
-
-  def reverse_transposition
-    # set keys
-    dedupe_key = dedupe.join
-    mod_key = modify_keyword
-
-    # cut and reorder segments
-    segments = assign_to_char(dedupe_key, cut_segments(mod_key))
-    segments = reorder_segments(mod_key, segments)
-
-    # reverse transposition, combine into one string and remove trailing X's
-    output = segments.transpose.join('')
-    output.chop! while output.end_with? 'X'
-    output
   end
 
   def dedupe
