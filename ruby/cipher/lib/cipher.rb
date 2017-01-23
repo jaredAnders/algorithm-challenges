@@ -1,5 +1,5 @@
 class Cipher
-  attr_accessor :text, :keyword, :date, :reverse_transpose, :modify_keyword
+  attr_accessor :text, :keyword, :date, :decrypt
 
   def initialize(text, keyword, date)
     @text = text
@@ -7,22 +7,22 @@ class Cipher
     @date = date
   end
 
-  # def decrypt
-  #   modify_keyword
-  # end
+  def decrypt
+    reverse_caesar(reverse_transposition)
+  end
 
-  def reverse_caesar
+  def reverse_caesar(input = text)
     # set alphabets
     alphabet = default_alphabet
     substitution = mixed_alphabet
 
     # reverse substitution
-    substitute_text(alphabet, substitution)
+    substitute_text(input, alphabet, substitution)
   end
 
-  def substitute_text(alphabet, substitution)
+  def substitute_text(input, alphabet, substitution)
     output = []
-    text.delete(' ').split('').each do |e|
+    input.delete(' ').split('').each do |e|
       index = substitution.index(e)
       output << alphabet[index]
     end
