@@ -12,19 +12,39 @@ class Cipher
   # end
 
   def reverse_caesar
-    mixed_alphabet
+    # set alphabets
+    alphabet = default_alphabet
+    substitution = mixed_alphabet
+
+    # reverse substitution
+    substitute_text(alphabet, substitution)
+  end
+
+  def substitute_text(alphabet, substitution)
+    output = []
+    text.delete(' ').split('').each do |e|
+      index = substitution.index(e)
+      output << alphabet[index]
+    end
+    output.join
+  end
+
+  def default_alphabet
+    alphabet = []
+    (65..90).each do |i|
+      alphabet << i.chr
+    end
+    (0..9).each { |i| alphabet << i.to_s }
+    alphabet
   end
 
   def mixed_alphabet
     mixed_alphabet = dedupe.join.split('')
-
     (65..90).each do |i|
       mixed_alphabet << i.chr unless mixed_alphabet.include?(i.chr)
     end
-
-    (0..9).each { |i| mixed_alphabet << i }
-
-    mixed_alphabet.rotate(-date).join
+    (0..9).each { |i| mixed_alphabet << i.to_s }
+    mixed_alphabet.rotate(-date)
   end
 
   def reverse_transposition
