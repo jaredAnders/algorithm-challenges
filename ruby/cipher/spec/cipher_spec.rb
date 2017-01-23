@@ -2,9 +2,9 @@ require 'spec_helper'
 
 RSpec.describe Cipher, type: :model do
   let(:text) { 'ASTOTSVALNINDCXNMOUIHIROXYOWROMPGYA' }
-  let(:key) { 'FOXHOUND' }
+  let(:keyword) { 'FOXHOUND' }
   let(:date) { 17 }
-  let(:input) { Cipher.new(text, key, date) }
+  let(:input) { Cipher.new(text, keyword, date) }
 
   describe '#reverse_transpose' do
     it 'reverses columnal transposition' do
