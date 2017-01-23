@@ -11,12 +11,23 @@ class Cipher
   #   modify_keyword
   # end
 
-  # def caesar
-  #
-  # end
-  #
+  def reverse_caesar
+    mixed_alphabet
+  end
 
-  def reverse_transpose
+  def mixed_alphabet
+    mixed_alphabet = dedupe.join.split('')
+
+    (65..90).each do |i|
+      mixed_alphabet << i.chr unless mixed_alphabet.include?(i.chr)
+    end
+
+    (0..9).each { |i| mixed_alphabet << i }
+
+    mixed_alphabet.rotate(-date).join
+  end
+
+  def reverse_transposition
     # set keys
     dedupe_key = dedupe.join
     mod_key = modify_keyword
