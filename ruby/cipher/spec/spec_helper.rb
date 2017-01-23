@@ -1,3 +1,4 @@
+require 'pry'
 require 'cipher'
 
 RSpec.configure do |config|

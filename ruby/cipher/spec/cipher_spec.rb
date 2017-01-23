@@ -1,13 +1,21 @@
 require 'spec_helper'
 
 RSpec.describe Cipher, type: :model do
-  describe '#decrypt' do
-    it 'returns key' do
-      message = "1T7766T56C6ZXB71T7NIXC6I5XMXIY11CWX8I5V7AE"
-      key = "CEILING"
-      date = 17
-      test = Cipher.new(message, key, date)
-      expect(test.order_keyword).to eq "CEGILN"
+  let(:text) { 'ASTOTSVALNINDCXNMOUIHIROXYOWROMPGYA' }
+  let(:key) { 'FOXHOUND' }
+  let(:date) { 17 }
+  let(:input) { Cipher.new(text, key, date) }
+
+  describe '#reverse_transpose' do
+    it 'reverses columnal transposition' do
+      expected = 'MANYSHIPSMOVINGTOWARDYOURLOCATION'
+      expect(input.reverse_transpose).to eq expected
+    end
+  end
+
+  describe '#modify_keyword' do
+    it 'dedupes and reorders alphabetically' do
+      expect(input.modify_keyword).to eq 'DFHNOUX'
     end
   end
 end
