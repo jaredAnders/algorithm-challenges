@@ -1,3 +1,3 @@
-# algorithm-challenges
+# Coding Challenges
 
-Various coding challenges
+Various coding challenges in Ruby and JavaScript.
